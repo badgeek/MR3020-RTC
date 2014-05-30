@@ -91,10 +91,8 @@ void gpio_setpin(unsigned int pin, unsigned int state)
 	if (state)
 	{
 		*(gpio+AR71XX_GPIO_REG_OUT)  |= (1 << pin);
-		//*(gpio+AR71XX_GPIO_REG_IN)  |= (1 << pin);
 	}else{
 		*(gpio+AR71XX_GPIO_REG_OUT)  &=~(1 << pin);
-		//*(gpio+AR71XX_GPIO_REG_IN)  &=~(1 << pin);
 	}
 }
 
@@ -117,14 +115,11 @@ void gpio_setpindir(unsigned int pin, unsigned int state)
 
 void dump_register()
 {
-
-	
 	printf(" [d] AR71XX_GPIO_REG_OE  %08lx \n", *(unsigned long *)gpio);
-   	printf(" [d] AR71XX_GPIO_REG_IN  %08lx \n", *(unsigned long *)(gpio+1));
-   	printf(" [d] AR71XX_GPIO_REG_OUT %08lx \n", *(unsigned long *)(gpio+2));
+   printf(" [d] AR71XX_GPIO_REG_IN  %08lx \n", *(unsigned long *)(gpio+1));
+   printf(" [d] AR71XX_GPIO_REG_OUT %08lx \n", *(unsigned long *)(gpio+2));
 	printf(" [d] AR71XX_GPIO_REG_SET %08lx \n", *(unsigned long *)(gpio+3));
-	printf(" [d] AR71XX_GPIO_REG_CLEAR %08lx \n", *(unsigned long *)(gpio+3));
-	
+	printf(" [d] AR71XX_GPIO_REG_CLEAR %08lx \n", *(unsigned long *)(gpio+3));	
 }
 
 
@@ -296,15 +291,11 @@ int j;
 
    gpio = (volatile unsigned *)gpio_mmap;	
 
-	dump_register();
+	//dump_register();
 
-    printf("[d] Using SCLK_PIN = %i\n", SCLK_PIN);
-	printf("[d] Using IO_PIN = %i\n", IO_PIN);
-	printf("[d] Using CE_PIN = %i\n", CE_PIN);
-
-
-   printf("press enter to test RTC.\n");
-   getchar();
+   printf(" [d] Using SCLK_PIN = %i\n", SCLK_PIN);
+	printf(" [d] Using IO_PIN = %i\n", IO_PIN);
+	printf(" [d] Using CE_PIN = %i\n", CE_PIN);
 
    //set all pin to output
    IO_OUTPUT;
@@ -315,9 +306,6 @@ int j;
    IO_LOW;
    SCLK_LOW;
    CE_LOW;
-
-
-
 
    usleep(2);
 
